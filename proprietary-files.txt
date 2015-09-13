@@ -116,12 +116,14 @@ lib/libaudiosa.so
 lib/libbt-aptx-4.0.3.so
 lib/libbtio.so
 lib/libcontrolcsc.so
+lib/libDisplaySyncModule.so
 lib/libengclient.so
 lib/libeng_wifi_ptest.so
 lib/libfactoryutil.so
 lib/libfmradio_jni.so
 lib/libfmservice.so
 lib/libImmVibeJ.so
+lib/libisp.so
 lib/libLifevibes_lvvefs.so
 lib/liblvvewrapper.so
 lib/libMali.so
