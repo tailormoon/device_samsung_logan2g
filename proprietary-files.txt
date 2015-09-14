@@ -113,6 +113,7 @@ lib/libatparser.so
 lib/libaudiopolicy_sec.so
 lib/libaudio-ril.so
 lib/libaudiosa.so
+lib/libbinder.so
 lib/libbt-aptx-4.0.3.so
 lib/libbtio.so
 lib/libcontrolcsc.so
@@ -127,6 +128,8 @@ lib/libisp.so
 lib/libLifevibes_lvvefs.so
 lib/liblvvewrapper.so
 lib/libMali.so
+lib/libmorpho_easy_hdr.so
+lib/libmorpho_facesolid.so
 lib/libnvaccessor.so
 lib/libomission_avoidance.so
 lib/libomx_avcdec_sharedlibrary.so
@@ -141,6 +144,7 @@ lib/lib_SamsungRec_V01006.so
 lib/lib_Samsung_Resampler.so
 lib/lib_Samsung_SB_AM_for_ICS_v03008.so
 lib/libsamsungSoundbooster.so
+lib/libseccameracore.so
 lib/libsec_devenc.so
 lib/libsec_ecryptfs.so
 lib/libsecfips.so

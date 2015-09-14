@@ -24,7 +24,7 @@ $(call inherit-product-if-exists, vendor/samsung/logan2g/logan2g-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += device/samsung/logan2g/overlay
+# DEVICE_PACKAGE_OVERLAYS += device/samsung/logan2g/overlay
 
 # Use high-density artwork where available; GT-S7262 supports hdpi (high) ~240dpi.
 # However the platform doesn't currently contain all of the bitmaps at hdpi density.
@@ -110,7 +110,6 @@ PRODUCT_PACKAGES += \
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
-    hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
 
