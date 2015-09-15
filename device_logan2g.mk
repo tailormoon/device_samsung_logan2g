@@ -24,7 +24,7 @@ $(call inherit-product-if-exists, vendor/samsung/logan2g/logan2g-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Overlay
-# DEVICE_PACKAGE_OVERLAYS += device/samsung/logan2g/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/logan2g/overlay
 
 # Use high-density artwork where available; GT-S7262 supports hdpi (high) ~240dpi.
 # However the platform doesn't currently contain all of the bitmaps at hdpi density.
@@ -110,8 +110,7 @@ PRODUCT_PACKAGES += \
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
-    wpa_supplicant \
-    wpa_supplicant.conf
+    libnetcmdiface
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -160,9 +159,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs before they have a chance to cause problems.
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.kernel.android.checkjni=0 \
     dalvik.vm.checkjni=false \
     dalvik.gc.type=precise \
-    ro.kernel.android.checkjni=0 \
     dalvik.vm.heapstartsize=5m \
     dalvik.vm.heapgrowthlimit=96m \
     dalvik.vm.heapsize=128m \
