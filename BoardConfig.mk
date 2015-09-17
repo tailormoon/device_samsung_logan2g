@@ -172,3 +172,6 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charg
 # Enable dex-preoptimization to speed up the first boot sequence of an SDK AVD.
 # Note that this operation only works on Linux for now.
 WITH_DEXPREOPT := true
+
+#Lights 
+#Todo: Fix light_backlight path

@@ -111,8 +111,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
     libnetcmdiface
-
-
+	
+#Lights HAL
+PRODUCT_PACKAGES += \
+    lights.sc6820i
 
 # Audio
 PRODUCT_PACKAGES += \
