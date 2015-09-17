@@ -1,7 +1,7 @@
 import init.sc6820i.usb.rc
 import init.bt.rc
 on init
-    stop ril-daemon
+    
 # Mountpoints
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage 0550 system sdcard_r
