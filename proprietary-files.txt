@@ -102,7 +102,6 @@ lib/hw/audio.primary.sc6820i.so
 lib/hw/camera.sc6820i.so
 lib/hw/gralloc.sc6820i.so
 lib/hw/hwcomposer.sc6820i.so
-lib/hw/lights.sc6820i.so
 lib/hw/sensors.sc6820i.so
 
 # lib

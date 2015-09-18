@@ -149,11 +149,11 @@ BOARD_LEGACY_NL80211_STA_EVENTS := true
 BOARD_NO_APSME_ATTR := true
 
 # Ril
-TARGET_PROVIDES_LIBRIL := true
-BOARD_USES_LEGACY_RIL := true
-BOARD_FORCE_RILD_AS_ROOT := true
-BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
-BOARD_RIL_CLASS := ../../../device/samsung/logan2g/ril/
+#TARGET_PROVIDES_LIBRIL := true
+#BOARD_USES_LEGACY_RIL := true
+#BOARD_FORCE_RILD_AS_ROOT := true
+#BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
+#BOARD_RIL_CLASS := ../../../device/samsung/logan2g/ril/
 
 # Bootanimation
 TARGET_SCREEN_WIDTH := 480
@@ -172,3 +172,6 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charg
 # Enable dex-preoptimization to speed up the first boot sequence of an SDK AVD.
 # Note that this operation only works on Linux for now.
 WITH_DEXPREOPT := true
+
+#Lights 
+#Todo: Fix light_backlight path

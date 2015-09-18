@@ -111,8 +111,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
     libnetcmdiface
-
-# Lights
+	
+#Lights HAL
 PRODUCT_PACKAGES += \
     lights.sc6820i
 
@@ -169,7 +169,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=150 \
     mobiledata.interfaces=rmnet0 \
-    ro.telephony.ril_class=SamsungSPRDRIL \
     ro.zygote.disable_gl_preload=true \
     persist.radio.multisim.config=dsds \
     ro.telephony.call_ring.multiple=0 \
