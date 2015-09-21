@@ -30,7 +30,7 @@
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 
-char const *const LIGHT_BACKLIGHT = "/sys/class/backlight/sprd_backlight/brightness"; //Todo: Fix light_backlight path
+char const *const LIGHT_BACKLIGHT = "/sys/class/backlight/panel/brightness"; // light_backlight path set
 char const *const LIGHT_BUTTONS = "/sys/class/leds/keyboard-backlight/brightness";
 char const *const LIGHT_KEYBOARD = NULL;
 
