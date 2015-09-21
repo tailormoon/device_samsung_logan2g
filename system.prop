@@ -16,4 +16,8 @@ conn.connectivity_change_delay=0
 persist.ttydev=ttyVUART0
 
 persist.sys.dataprefer.simid=0
-
+ro.secure=0
+ro.adb.secure=0
+service.adb.root=1
+ro.allow.mock.location=1
+ro.debuggable=1
