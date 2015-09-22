@@ -15,7 +15,7 @@
 #
 
 # Get minimum languages available
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_small.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects if available
 $(call inherit-product-if-exists, vendor/samsung/logan2g/logan2g-vendor.mk)
@@ -107,6 +107,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     setup_fs
 
+# Camera
+PRODUCT_PACKAGES += \
+Gallery2
+
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -170,7 +174,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.supplicant_scan_interval=150 \
     mobiledata.interfaces=rmnet0 \
     ro.zygote.disable_gl_preload=true \
-    persist.radio.multisim.config=dsds \
+    persist.radio.multisim.config=none \
     ro.telephony.call_ring.multiple=0 \
     ro.telephony.call_ring=0 \
     ro.crypto.state=unsupported \

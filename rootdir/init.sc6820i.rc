@@ -1,42 +1,30 @@
 import init.sc6820i.usb.rc
 import init.bt.rc
 on init
-    
-
-     mkdir /mnt/shell/emulated 0700 shell shell
-     mkdir /storage 0550 system sdcard_r
-     
-     mkdir /storage/emulated 0555 root root
-
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage 0550 system sdcard_r
+    mkdir /storage/emulated 0555 root root
     # External storage directories
-     mkdir /storage/sdcard1 0000 system system
-     mkdir /storage/usbdisk0 0000 system system
- 
+    mkdir /storage/sdcard1 0000 system system
+    mkdir /storage/usbdisk0 0000 system system
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
     export SECONDARY_STORAGE /storage/sdcard1 
-
-     # For backwards compatibility
-     symlink /storage/emulated/legacy /sdcard
-     symlink /storage/emulated/legacy /mnt/sdcard
-     symlink /storage/emulated/legacy /storage/sdcard0
-     symlink /storage/sdcard1 /extSdCard
-     symlink /storage/sdcard1 /mnt/extSdCard
-     symlink /storage/sdcard1 /external_sd
-
+    # For backwards compatibility
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /storage/sdcard1 /extSdCard
+    symlink /storage/sdcard1 /mnt/extSdCard
+    symlink /storage/sdcard1 /external_sd
     # sd-ext
     mkdir /sd-ext 0771 system system
     export SD_EXT_DIRECTORY /sd-ext
-	
-	
-	
 # Required Mountpoints
     mkdir /efs 0771 radio system
     symlink /efs /factory
     symlink /dev/block/mmcblk0p4 /dev/block/param
-    mkdir /dev/pipe 0755 system system
-    pipe 666 /dev/pipe/mmi.audio.ctrl
 on fs
     mkdir /productinfo 0774 system system
     mount_all /fstab.sc6820i
@@ -178,6 +166,7 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth system /proc/bluetooth/sleep/proto
 # on property:ro.debuggable=1
+    setprop wifi.interface wlan0
     mount debugfs debugfs /sys/kernel/debug
     chmod 220 /sys/kernel/debug/system/dopanic
     chown system system /sys/kernel/debug/system/dopanic
@@ -267,7 +256,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
-	
 # for bluetooth pan
 service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
      class main
@@ -279,8 +267,6 @@ service phoneserver /system/bin/phoneserver
     group radio system shell
     disabled
     oneshot
-
-	
 service calibrationinit /system/bin/calibration_init
     class main
     oneshot
@@ -288,8 +274,6 @@ service charge /bin/charge
     class charger
     user root
     oneshot
-	
-	
 # AND3_SPRD
 # rild service
 service ril-daemon /system/bin/rild_sp  -l /system/lib/libreference-ril.so -- -n 0
@@ -298,19 +282,16 @@ service ril-daemon /system/bin/rild_sp  -l /system/lib/libreference-ril.so -- -n
     socket rild-debug stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r
-	
-	
-#service ril-daemon2 /system/bin/rild_sp  -l /system/lib/libreference-ril.so -- -n 1
-#    class main
-#    socket rild1 stream 660 root radio
-#    socket rild-debug1 stream 660 radio system
-#    user root
-#    group radio cache inet misc audio sdcard_rw log sdcard_r
-#	
+service ril-daemon2 /system/bin/rild_sp  -l /system/lib/libreference-ril.so -- -n 1
+    class main
+    socket rild1 stream 660 root radio
+    socket rild-debug1 stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw log sdcard_r
 # create virtual SD card at /storage/sdcard0, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
 # underlying files in /data/media will be created with user and group media_rw (1023)
-service sdcard /system/bin/sdcard /data/media /storage/sdcard0 1023 1023
+service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
     class late_start
     oneshot
 service akmd /system/bin/akmd8975 -m 3
