@@ -19,6 +19,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/samsung/logan2g/device_logan2g.mk)
 
 # Overrides
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_logan2g
 PRODUCT_DEVICE := logan2g
 PRODUCT_BRAND := samsung
