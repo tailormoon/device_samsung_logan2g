@@ -113,6 +113,7 @@ Gallery2
 
 # Wifi
 PRODUCT_PACKAGES += \
+    wpa_supplicant \
     dhcpcd.conf \
     libnetcmdiface
 	

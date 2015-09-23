@@ -32,7 +32,7 @@ bin/slogctl
 bin/sprd_monitor
 bin/ss_daemon
 bin/wlandutservice
-bin/wpa_supplicant
+#bin/wpa_supplicant
 
 # cameradata
 cameradata/datapattern_420sp.yuv
