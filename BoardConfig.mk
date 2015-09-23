@@ -53,7 +53,7 @@ TARGET_NO_RADIOIMAGE := true
 # Platform
 TARGET_BOARD_PLATFORM := sc6820i
 COMMON_GLOBAL_CFLAGS += -DSPRD_HARDWARE
-TARGET_BOARD_PLATFORM_GPU := Mali-400 MP
+TARGET_BOARD_PLATFORM_GPU := mali-400 MP
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8
@@ -104,6 +104,9 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/dwc_otg.0/gadget/lun0/
 # TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 # TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 
+# Build OpenGLES emulation guest and host libraries
+BUILD_EMULATOR_OPENGL := true
+
 # Hardware Rendering
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/logan2g/egl/egl.cfg
@@ -117,7 +120,7 @@ COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
 # Audio
 HAVE_HTC_AUDIO_DRIVER := true
 BOARD_USES_GENERIC_AUDIO := true
-COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB
+COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DSAMSUNG_BCM_AUDIO_BLOB
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -126,6 +129,8 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/logan2g/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/logan2g/bluetooth/libbt_vndcfg.txt
 
 # Connectivity - Wi-Fi
+BOARD_HAVE_SAMSUNG_WIFI     := true
+WPA_BUILD_SUPPLICANT        := true
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd

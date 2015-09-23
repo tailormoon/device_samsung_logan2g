@@ -17,6 +17,7 @@ bin/ext_data.sh
 bin/ext_kill.sh
 bin/ext_symlink.sh
 bin/hostapd
+bin/hciattach
 bin/immvibed
 bin/LE_dut
 bin/macloader
@@ -32,7 +33,7 @@ bin/slogctl
 bin/sprd_monitor
 bin/ss_daemon
 bin/wlandutservice
-bin/wpa_supplicant
+#bin/wpa_supplicant
 
 # cameradata
 cameradata/datapattern_420sp.yuv
@@ -115,6 +116,8 @@ lib/libaudiopolicy_sec.so
 lib/libaudio-ril.so
 lib/libaudiosa.so
 lib/libbinder.so
+lib/libbluetooth.so
+lib/libbluetoothd.so
 lib/libbt-aptx-4.0.3.so
 lib/libbtio.so
 lib/libcontrolcsc.so
