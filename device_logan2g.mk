@@ -173,6 +173,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=5m \
     dalvik.vm.heapgrowthlimit=96m \
     dalvik.vm.heapsize=128m \
+    ro.telephony.ril_class=SamsungSPRDRIL
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=150 \
     mobiledata.interfaces=rmnet0 \
