@@ -33,7 +33,6 @@ bin/slogctl
 bin/sprd_monitor
 bin/ss_daemon
 bin/wlandutservice
-#bin/wpa_supplicant
 
 # cameradata
 cameradata/datapattern_420sp.yuv
@@ -81,7 +80,11 @@ etc/audio_VR/Tx_ControlParams_VR_WIRED_HEADSET_WIDEBAND.txt
 etc/pvplayer.cfg
 etc/slog.conf
 etc/slog.conf.user
+etc/spn-conf.xml
 etc/Volume.db
+
+# dhcpcd
+etc/dhcpcd/dhcpcd.conf
 
 # wifi
 etc/wifi/bcmdhd_apsta.bin
