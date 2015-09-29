@@ -87,6 +87,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/hw_params/codec_pga.xml:system/etc/codec_pga.xml\
     $(LOCAL_PATH)/hw_params/tiny_hw.xml:system/etc/tiny_hw.xml
 
+#WiFi
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/nvram_mfg.txt:system/etc/wifi/nvram_mfg.txt \
+    $(LOCAL_PATH)/wifi/nvram_net.txt:system/etc/wifi/nvram_net.txt
+
 # These are the hardware-specific files
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
