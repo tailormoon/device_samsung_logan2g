@@ -105,9 +105,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/dwc_otg.0/gadget/lun0/
 # TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 # TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 
-# Build OpenGLES emulation guest and host libraries
-BUILD_EMULATOR_OPENGL := true
-
 # Hardware Rendering
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/logan2g/egl/egl.cfg
@@ -145,7 +142,7 @@ WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/dhd.ko"
 WIFI_DRIVER_MODULE_NAME     := "dhd"
 WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_DRIVER_MODULE_AP_ARG   := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
-WIFI_BAND                   := 802_11_BG
+WIFI_BAND                   := 802_11_ABG
 
 # Wi-Fi Tethering
 BOARD_HAVE_SAMSUNG_WIFI := true
@@ -153,11 +150,8 @@ BOARD_LEGACY_NL80211_STA_EVENTS := true
 BOARD_NO_APSME_ATTR := true
 
 # Ril
-TARGET_PROVIDES_LIBRIL := true
-BOARD_USES_LEGACY_RIL := true
-BOARD_FORCE_RILD_AS_ROOT := true
-BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
-BOARD_RIL_CLASS := ../../../device/samsung/logan2g/ril/
+BOARD_PROVIDES_LIBRIL := true
+BOARD_MOBILEDATA_INTERFACE_NAME := "rmnet0"
 
 # Bootanimation
 TARGET_SCREEN_WIDTH := 480

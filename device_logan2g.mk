@@ -110,12 +110,12 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-Gallery2
+    Gallery2
 
 # Wifi
 PRODUCT_PACKAGES += \
     wpa_supplicant \
-	dhcpcd \
+    dhcpcd \
     libnetcmdiface
 
 #Lights HAL
@@ -155,7 +155,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
     ro.product.chipset=sc6820i \
     ro.com.android.dataroaming=false \
-    persist.msms.phone_count=1 \
+    persist.msms.phone_count=2 \
     persist.sys.sprd.modemreset=1
 
 # Google-specific location properties

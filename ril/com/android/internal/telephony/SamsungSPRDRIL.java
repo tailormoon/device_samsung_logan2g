@@ -29,6 +29,11 @@ import java.util.Collections;
 import android.telephony.PhoneNumberUtils;
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Custom RIL to handle unique behavior of D2 radio
@@ -61,6 +66,28 @@ public class SamsungSPRDRIL extends RIL implements CommandsInterface {
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
 
         send(rr);
+    }
+
+    public Object GetIMEI (Parcel p) {
+    	Object ret;
+	ret =  responseString(p);
+	if(ret.toString() != null)
+		riljLog("IMEI : Read from Parcel " + ret.toString());
+	else
+		riljLog("IMEI : Read from Parcel returns null");
+	//Now we will go dirty :3
+	//String str;
+	File file = new File("efs/imei/imeino1");
+	try {
+		BufferedReader br = new BufferedReader(new FileReader(file));
+            	String str = br.readLine();
+		riljLog("IMEI : Dirty Read " + str);
+		return str;
+	} catch (IOException e)	{
+	}
+	riljLog("IMEI : Dirty Read returns null o.O");
+	return null;
+	
     }
 
     protected void
@@ -137,7 +164,7 @@ public class SamsungSPRDRIL extends RIL implements CommandsInterface {
             case RIL_REQUEST_QUERY_CALL_WAITING: ret =  responseInts(p); break;
             case RIL_REQUEST_SET_CALL_WAITING: ret =  responseVoid(p); break;
             case RIL_REQUEST_SMS_ACKNOWLEDGE: ret =  responseVoid(p); break;
-            case RIL_REQUEST_GET_IMEI: ret =  responseString(p); break;
+            case RIL_REQUEST_GET_IMEI: ret =  GetIMEI(p); break;
             case RIL_REQUEST_GET_IMEISV: ret =  responseString(p); break;
             case RIL_REQUEST_ANSWER: ret =  responseVoid(p); break;
             case RIL_REQUEST_DEACTIVATE_DATA_CALL: ret =  responseVoid(p); break;

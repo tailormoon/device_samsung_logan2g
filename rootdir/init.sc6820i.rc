@@ -21,10 +21,12 @@ on init
     # sd-ext
     mkdir /sd-ext 0771 system system
     export SD_EXT_DIRECTORY /sd-ext
-# Required Mountpoints
+# Required entries
     mkdir /efs 0771 radio system
     symlink /efs /factory
     symlink /dev/block/mmcblk0p4 /dev/block/param
+    write /proc/sys/kernel/panic 2
+    chown media /sys/dcdc_efficiency/dcdc_efficiency
 on fs
     mkdir /productinfo 0774 system system
     mount_all /fstab.sc6820i
@@ -41,21 +43,23 @@ on post-fs-data
 # we will remap this as /storage/sdcard0 with the sdcard fuse tool
     mkdir /data/media 0775 media_rw media_rw
     chown media_rw media_rw /data/media
-    mkdir /data/misc/sensors 0775 system system
-# give system access to wpa_supplicant.conf for backup and restore
-    mkdir /data/misc/wifi 0770 wifi system
+# for Wifi
     mkdir /efs/wifi 0775 radio system
     mkdir /efs/bluetooth 0775 radio system
-    mkdir /efs/sensor 0775 radio system
     mkdir /efs/imei 0775 radio system
+    mkdir /efs/sensor 0775 radio system
     mkdir /efs/audio 0775 system system
-    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+    mkdir /data/misc/wifi 0775 wifi system
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0775 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
-    chown system system /efs/wifi/.mac.info
-    chmod 0664 /efs/wifi/.mac.info
     mkdir /data/misc/radio 0775 radio system
+    mkdir /data/misc/sensors 0775 system system
+    mkdir /system/etc/wifi 0775 wifi wifi
+    chown system system /efs/wifi/.mac.info
+    chown dhcp dhcp /data/misc/dhcp
+    chmod 0664 /efs/wifi/.mac.info
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+    setprop wifi.interface wlan0
 # for TRP/TIS
     write /data/.psm.info 1
     chown system root /data/.psm.info
@@ -63,64 +67,51 @@ on post-fs-data
 # for Broadcom FMRadio
     chmod 0777 /system/bin/btld
     setprop service.brcm.bt.pbap_mode btld
-# Set indication (checked by vold) that we have finished this action
-    setprop vold.post_fs_data_done 1
+# For security reasons, /data/local/tmp should always be empty.
+# Do not place files or directories in /data/local/tmp
+    mkdir /data/anr 0775 system system
+    mkdir /data/local/audio_tmp 0771 system system
+# SA, System SW, SAMSUNG create log directory
+    mkdir /data/log 0775 system log
+    chown system log /data/log
+    chmod 0775 /data/log
+    chmod 0775 /data/anr
 # MTP permission
 	chmod 0660 /dev/usb_mtp_gadget
 	chown system system /dev/usb_mtp_gadget
+# Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
 # tsp fw update permission
     chmod 664 /dev/zinitix_touch_misc
     chown system system /sys/class/sec/tsp/cmd
-    chmod 0664 /sys/class/sec/tsp/cmd 
+    chmod 0664 /sys/class/sec/tsp/cmd
     chown system system /sys/class/sec/sec_touchscreen/tsp_firm_update
     chmod 0664 /sys/class/sec/sec_touchscreen/tsp_firm_update
-    chown system system /sys/class/sec/sec_touchscreen/set_lowIntensity
-    chmod 0664 /sys/class/sec/sec_touchscreen/set_lowIntensity
 # key press path permission
-    chown system system /sys/class/sec_key/sec_key_pressed/key_short
-    chmod 0664 /sys/class/sec_key/sec_key_pressed/key_short
-    chown system system /sys/class/sec_key/sec_powerkey_pressed/key_short
-    chmod 0664 /sys/class/sec_key/sec_powerkey_pressed/key_short
+    chown system system /sys/class/sec/sec_key/sec_key_pressed
+    chmod 0664 /sys/class/sec/sec_key/sec_key_pressed
 on boot
 # SISO-ANDR-PERF :: START Changing governor to performance and scheduler to noop once boot is started
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor	performance
     write /sys/block/mmcblk0/queue/scheduler noop
 # SISO-ANDR-PERF :: END HERE
+# Permissions for System Server and daemons.
+    chown system system /sys/power/release_wakelock
+    chmod 0660 /sys/power/release_wakelock
+# Brightness
     chown system system /sys/class/backlight/panel/max_brightness
     chmod 0660 /sys/class/backlight/panel/max_brightness
     chown system system /sys/class/backlight/panel/brightness
     chmod 0660 /sys/class/backlight/panel/brightness
-# Audio (Earjack)
-    chown system radio /sys/class/audio/earjack/select_jack
-    chown system radio /sys/class/audio/earjack/key_state
-    chown system radio /sys/class/audio/earjack/state
-    chown media system /sys/class/audio/earjack/reselect_jack
 # Battery node
-    chown system radio /sys/class/power_supply/battery/batt_charging_source
-    chown system radio /sys/class/power_supply/battery/batt_error_test
     chown system radio /sys/class/power_supply/battery/batt_lp_charging
     chown system radio /sys/class/power_supply/battery/batt_read_adj_soc
     chown system radio /sys/class/power_supply/battery/batt_read_raw_soc
     chown system radio /sys/class/power_supply/battery/batt_reset_soc
-    chown system radio /sys/class/power_supply/battery/batt_slate_mode
     chown system radio /sys/class/power_supply/battery/batt_temp_adc
     chown system radio /sys/class/power_supply/battery/batt_temp_adc_aver
-    chown system radio /sys/class/power_supply/battery/batt_temp_adc_cal
     chown system radio /sys/class/power_supply/battery/batt_temp_aver
     chown system radio /sys/class/power_supply/battery/batt_type
-    chown system radio /sys/class/power_supply/battery/batt_vf_adc
-    chown system radio /sys/class/power_supply/battery/batt_vfocv
-    chown system radio /sys/class/power_supply/battery/batt_vol_adc
-    chown system radio /sys/class/power_supply/battery/batt_vol_adc_aver
-    chown system radio /sys/class/power_supply/battery/batt_vol_adc_cal
-    chown system radio /sys/class/power_supply/battery/batt_vol_aver
-    chown system radio /sys/class/power_supply/battery/factory_mode
-    chown system radio /sys/class/power_supply/battery/siop_activated
-    chown system radio /sys/class/power_supply/battery/siop_level
-    chown system radio /sys/class/power_supply/battery/update
-    chown system radio /sys/class/power_supply/battery/wc_status
-    chown system radio /sys/class/power_supply/battery/wpc_pin_state
-    chown system radio /sys/class/power_supply/fuelgauge/fg_curr_ua
 # AND3_SPRD
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
 #   simslot 1
@@ -135,16 +126,13 @@ on boot
     chown system system /sys/class/input/input0/enable
     chown system system /sys/class/input/input0/poll_delay
     chmod 0660 /sys/class/input/input0/enable
-    chmod 0660 /sys/class/input/input0/poll_delay    
+    chmod 0660 /sys/class/input/input0/poll_delay
 # Accelerometer_sensor
-    chown system radio /dev/accelerometer
     chown system radio /sys/class/sensors/accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
     chown system radio /sys/class/sensors/accelerometer_sensor/accel_cal_open
     chown system radio /sys/class/sensors/accelerometer_sensor/reactive_alert
-    chown system radio /sys/class/sensors/accelerometer_sensor/vendor
-    chown system radio /sys/class/sensors/accelerometer_sensor/name
 # permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth bluetooth ro.bt.bdaddr_path
@@ -166,17 +154,20 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth system /proc/bluetooth/sleep/proto
 # on property:ro.debuggable=1
-    setprop wifi.interface wlan0
     mount debugfs debugfs /sys/kernel/debug
     chmod 220 /sys/kernel/debug/system/dopanic
     chown system system /sys/kernel/debug/system/dopanic
-# GPIO DVS
-    chown radio system /sys/class/secgpio_check/secgpio_check_all/gpio_sleep_debug
-    chown radio system /sys/class/secgpio_check/secgpio_check_all/check_init_detail
-    chown radio system /sys/class/secgpio_check/secgpio_check_all/gpioinit_check
-    chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
-    chown radio system /sys/class/secgpio_check/secgpio_check_all/secgpio_ctrl
-    chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
+# This property trigger has added to imitiate the previous behavior of "adb root".
+# The adb gadget driver used to reset the USB bus when the adbd daemon exited,
+# and the host side adb relied on this behavior to force it to reconnect with the
+# new adbd instance after init relaunches it. So now we force the USB bus to reset
+# here when adbd sets the service.adb.root property to 1.  We also restart adbd here
+# rather than waiting for init to notice its death and restarting it so the timing
+# of USB resetting and adb restarting more closely matches the previous behavior.
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1
 # start nvitem daemon.
 service nvm_daemon /system/bin/nvm_daemon
     #class main
@@ -267,6 +258,12 @@ service phoneserver /system/bin/phoneserver
     group radio system shell
     disabled
     oneshot
+service phoneserver_2sim /system/bin/phoneserver_2sim
+    class core
+    user root
+    group radio system shell
+    disabled
+    oneshot
 service calibrationinit /system/bin/calibration_init
     class main
     oneshot
@@ -341,6 +338,37 @@ on property:init.svc.macloader=stopped
     chown system root /data/.rev
     chmod 0660 /data/.rev
 # end of wifi
+service dbus /system/bin/dbus-daemon --system --nofork
+    class main
+    socket dbus stream 660 bluetooth bluetooth
+    user bluetooth
+    group bluetooth net_bt_admin
+# Make sure we startup btld before hcid
+service btld /system/bin/btld -lpm 0
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+service bluetoothd /system/bin/logwrapper /system/bin/bluetoothd -n -d
+    class main
+    socket bluetooth stream 660 bluetooth bluetooth
+    socket dbus_bluetooth stream 660 bluetooth bluetooth
+    # init.rc does not yet support applying capabilities, so run as root and
+    # let bluetoothd drop uid to bluetooth with the right linux capabilities
+    group bluetooth net_bt_admin misc
+    disabled
+# AT Distributor for factory test
+service at_distributor /system/bin/at_distributor
+    class main
+    user root
+    group radio log
+on property:ro.dumpstate.dmesg=1
+    write /proc/sys/kernel/dmesg_restrict 0
+# For Datarouter
+    chown system system /dev/ttyGS0
+    chown system system /dev/ttyGS1
+    chown system system /dev/ttyGS2
+    chown system system /dev/ttyGS3
 # For SysScope
     symlink /dev/block/mmcblk0p4 /dev/block/param
 # Broadcom FMRadio
