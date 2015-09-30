@@ -18,7 +18,6 @@ bin/ext_symlink.sh
 bin/hciattach
 bin/immvibed
 bin/LE_dut
-bin/macloader
 bin/mfgloader
 bin/modemd
 bin/nvm_daemon
@@ -74,19 +73,16 @@ etc/audio_VR/Tx_ControlParams_VR_WIRED_HEADPHONE_WIDEBAND.txt
 etc/audio_VR/Tx_ControlParams_VR_WIRED_HEADSET_WIDEBAND.txt
 
 # etc
-etc/apns-conf.xml
 etc/pvplayer.cfg
-etc/spn-conf.xml
 etc/Volume.db
-
-# dhcpcd
-etc/dhcpcd/dhcpcd.conf
 
 # wifi
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_mfg.bin
 etc/wifi/bcmdhd_p2p.bin
 etc/wifi/bcmdhd_sta.bin
+etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_net.txt
 etc/wifi/wpa_supplicant.conf
 
 # egl
@@ -112,7 +108,7 @@ lib/libatparser.so
 lib/libaudiopolicy_sec.so
 lib/libaudio-ril.so
 lib/libaudiosa.so
-lib/libbinder.so
+lib/libbluetoothd.so
 lib/libbt-aptx-4.0.3.so
 lib/libbtio.so
 lib/libcontrolcsc.so
