@@ -108,6 +108,7 @@ lib/libatparser.so
 lib/libaudiopolicy_sec.so
 lib/libaudio-ril.so
 lib/libaudiosa.so
+lib/libbinder.so
 lib/libbluetoothd.so
 lib/libbt-aptx-4.0.3.so
 lib/libbtio.so
