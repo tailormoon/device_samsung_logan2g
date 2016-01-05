@@ -349,6 +349,14 @@ service btld /system/bin/btld -lpm 0
     group bluetooth net_bt_admin
     disabled
     oneshot
+service bluetoothd /system/bin/logwrapper /system/bin/bluetoothd -n -d
+    class main
+    socket bluetooth stream 660 bluetooth bluetooth
+    socket dbus_bluetooth stream 660 bluetooth bluetooth
+    # init.rc does not yet support applying capabilities, so run as root and
+    # let bluetoothd drop uid to bluetooth with the right linux capabilities
+    group bluetooth net_bt_admin misc
+    disabled
 # AT Distributor for factory test
 service at_distributor /system/bin/at_distributor
     class main
