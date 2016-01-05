@@ -17,6 +17,7 @@ bin/ext_symlink.sh
 bin/hciattach
 bin/immvibed
 bin/LE_dut
+bin/macloader
 bin/mfgloader
 bin/modemd
 bin/nvm_daemon
