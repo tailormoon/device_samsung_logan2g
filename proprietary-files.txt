@@ -14,6 +14,7 @@ bin/ext_chown.sh
 bin/ext_data.sh
 bin/ext_kill.sh
 bin/ext_symlink.sh
+bin/hciattach
 bin/immvibed
 bin/LE_dut
 bin/mfgloader
@@ -107,6 +108,8 @@ lib/libaudiopolicy_sec.so
 lib/libaudio-ril.so
 lib/libaudiosa.so
 lib/libbinder.so
+lib/libbluetooth
+lib/libbluetoothd
 lib/libbt-aptx-4.0.3.so
 lib/libbtio.so
 lib/libcontrolcsc.so
@@ -116,6 +119,7 @@ lib/libeng_wifi_ptest.so
 lib/libfactoryutil.so
 lib/libfmradio_jni.so
 lib/libfmservice.so
+lib/libglib
 lib/libImmVibeJ.so
 lib/libisp.so
 lib/libLifevibes_lvvefs.so
