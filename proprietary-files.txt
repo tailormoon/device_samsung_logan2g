@@ -5,6 +5,7 @@ bin/bcm4330.hcd
 bin/bcm_dut
 bin/bluetoothd
 bin/btld
+bin/brcm_patchram_plus
 bin/calibration_init
 bin/cpu
 bin/engappclient
