@@ -64,6 +64,27 @@ TARGET_KERNEL_CONFIG := cyanogenmod-logan2g_defconfig
 TARGET_PROVIDES_INIT_RC := true
 BOARD_USES_UNCOMPRESSED_BOOT := true
 
+# Init
+TARGET_NR_SVC_SUPP_GIDS := 48
+
+# SELinux
+BOARD_SEPOLICY_DIRS += device/samsung/vivalto3gvn/sepolicy
+BOARD_SEPOLICY_UNION :=	\
+	file.te	\
+	file_contexts \
+	seapp_contexts \
+	theme.te \
+	healthd.te \
+	init.te \
+	init_shell.te \
+	installd.te \
+	netd.te \
+	shell.te \
+	system.te \
+	untrusted_app.te \
+	vold.te	\
+	zygote.te
+
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
