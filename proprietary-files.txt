@@ -22,6 +22,7 @@ bin/LE_dut
 bin/macloader
 bin/mfgloader
 bin/modemd
+bin/nvitemd
 bin/nvm_daemon
 bin/phoneserver
 bin/phoneserver_2sim
