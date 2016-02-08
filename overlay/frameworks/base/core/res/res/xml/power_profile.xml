@@ -58,12 +58,12 @@
   <item name="cpu.idle">4</item>
   <!-- Current at each CPU speed, as per 'cpu.speeds' -->
   <array name="cpu.active">
-        <value>577</value>
-        <value>408</value>
-        <value>240</value>
-        <value>178</value>
-        <value>106</value>
-    </array>
+      <value>577</value>
+      <value>408</value>
+      <value>240</value>
+      <value>178</value>
+      <value>106</value>
+  </array>
   <!-- This is the battery capacity in mAh (measured at nominal voltage) -->
   <item name="battery.capacity">2100</item>
 </device>
